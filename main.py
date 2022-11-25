@@ -56,14 +56,18 @@ num1, num2 = int(input()), int(input())
 print(list_[num1] * list_[num2])
 
 '''5. Реализуйте алгоритм перемешивания списка.'''
-
+print('\n\n')
 list_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-list_2, i, list_j = [], 0, []
+list_2 = []
+list_j = ''
+i = 0
 
-while i < len(list_1):
+while i <= len(list_1):
     j = random.randint(0, len(list_1)-1)
-    list_j.append(j)
-    if j not in list_j:
+    list_j += str(j)
+    print(j, list_j)
+    if str(j) not in list_j:
+        print(j)
         list_2[i] = list_1[j]
         list_2.append(list_2[i])
         i += 1
