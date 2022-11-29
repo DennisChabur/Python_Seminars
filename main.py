@@ -1,74 +1,59 @@
-import random
+'''Задайте список из нескольких чисел. Напишите программу, которая найдёт сумму элементов списка, стоящих на нечётной позиции.
+Пример: [2, 3, 5, 9, 3] -> на нечётных позициях элементы 3 и 9, ответ: 12'''
 
-'''1. Напишите программу, которая принимает на вход вещественное число и показывает сумму его цифр.'''
+lst = [2, 3, 5, 9, 3]
 
-s = input("Введите что угодно, программа посчитает цифры")
-count = 0
+print(f'на нечет. позициях эл-ты {[lst[x] for x in range(1, len(lst), 2)]}, so the result is {sum(lst[i] for i in range(1, len(lst), 2))}')
 
-for i in s:
-    if i in "1234567890":
-        count += int(i)
-print(count)
+'''Напишите программу, которая найдёт произведение пар чисел списка. Парой считаем первый и последний элемент, второй и предпоследний и т.д.
+Пример: [2, 3, 4, 5, 6] => [12, 15, 16];
+- [2, 3, 5, 6] => [12, 15]'''
 
-'''2. Напишите программу, которая принимает на вход число N и выдает набор произведений чисел от 1 до N.
-- пусть N = 4, тогда [ 1, 2, 6, 24 ] (1, 1*2, 1*2*3, 1*2*3*4)'''
+lst = [2, 3, 4, 5, 6]
+lst_prod=[]
+for i in range(len(lst)):
+    if i < len(lst) - i:
+        lst_prod.append(lst[i] * lst[len(lst) - i - 1])
+print(lst_prod)
 
-N = int(input("Введите число. Выйдет список фактериалов"))
+'''Задайте список из вещественных чисел. Напишите программу, которая найдёт разницу между максимальным и минимальным значением дробной части элементов.
+Пример: [1.1, 1.2, 3.1, 5, 10.01] => 0.19'''
+
+lst = [1.1, 1.2, 3.1, 5, 10.01]
+max, min  = float('-inf'), float('+inf')
+
+for i in lst:
+    curr = i - i//1
+    if curr > max: max = curr
+    elif curr < min: min = curr
+    else: continue
+    min_max = [min, max]
+print(min_max[1] - min_max[0])
 
 
-def factorial(n):
-    if n == 1: return 1
-    return n * factorial(n - 1)
+'''Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+Пример: 45 -> 101101
+- 3 -> 11
+- 2 -> 10'''
 
+num = int(input("Input your number to transform dec into bin\n"))
+result = ""
+while num > 0:
+    if num % 2 == 0: result += '0'
+    else: result += '1'
+    num //= 2
+print(result[::-1])
 
-list_ = []
+'''Задайте число. Составьте список чисел Фибоначчи, в том числе для отрицательных индексов.
+Пример: для k = 8 список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21]'''
 
-for i in range(1, N + 1):
-    list_.append(factorial(i))
-print(list_)
+num = int(input("Input numbers of fibonachi numbers\n"))
+fib_ok = []
+fib_odd = []
+f0, f1 = 0, 1
 
-'''3. Задайте список из n чисел последовательности (1 + 1/n)**n и выведите на экран их сумму.
-- Для n = 6: [2.0, 2.25, 2.37, 2.44, 2.488, 2.52]     ->       14.072'''
-
-n = int(input("Input number to get odd list"))
-list_ = []
-
-for i in range(1, n + 1):
-    func = (1 + 1 / i) ** i
-    list_.append(round(func, 2))
-
-print(list_)
-
-'''4. Задайте список из N элементов, заполненных числами из промежутка [-N, N]. 
-  Найдите произведение элементов на указанных позициях. 
-  Позиции вводятся с клавиатуры. 5 2 6'''
-
-N = int(input("Input number to get a list [-N,N]"))
-list_ = []
-
-for i in range(-N, N + 1):
-    list_.append(i)
-print(f'You\'ve got the list {list_}')
-print("Now input two indexes to product this in the list")
-
-num1, num2 = int(input()), int(input())
-
-print(list_[num1] * list_[num2])
-
-'''5. Реализуйте алгоритм перемешивания списка.'''
-print('\n\n')
-list_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-list_2 = []
-list_j = ''
-i = 0
-
-while i <= len(list_1):
-    j = random.randint(0, len(list_1)-1)
-    list_j += str(j)
-    print(j, list_j)
-    if str(j) not in list_j:
-        print(j)
-        list_2[i] = list_1[j]
-        list_2.append(list_2[i])
-        i += 1
-print(list_2)
+for i in range(num + 1):
+    fib_ok.append(f0)
+    fib_odd.append(f0 * (-1)**(i+1))
+    f0, f1 = f1, f0 + f1
+print(fib_odd[::-1] + fib_ok[1:])
