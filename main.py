@@ -11,6 +11,7 @@ import random as r
 #     result1 += i + ' '
 # print(result1)
 
+# print(*[x for x in result if 'абв' not in x])
 
 '''2 Создайте программу для игры с конфетами человек против человека.
 
