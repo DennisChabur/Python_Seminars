@@ -67,47 +67,45 @@ import random
 '''5 Даны два файла, в каждом из которых находится запись многочлена. Задача - сформировать файл, содержащий сумму многочленов.
 Коэффициенты могут быть как положительными, так и отрицательными. Степени многочленов могут отличаться.'''
 
-funck1 = '94*x**6 - 26*x**4 + 55*x**2 - 81*x**0'
-funck2 = '1*x**4 - 96*x**2 + 12*x**1 '
-
-def split_funck(str):
-    x = str.split('*x**')
-    str = ' '.join(x)
-    x = str.split('-')
-    str = ' '.join(x)
-    x = str.split('+')
-    str = ' '.join(x)
-    x = str.split(' ')
-
-    while '' in x:
-        x.remove('')
-    res = list(map(int, x))
-
-    make_dict(res)
-    return res
-
-def make_dict(res):
-    dct = {}
-    for i in range(1, len(res), 2):
-        dct[str(res[i])] = res[i - 1]
-    return dct
-
-s1 = split_funck(funck1)
-print(s1)
-d1 = make_dict(s1)
-print(d1)
-
-s2 = split_funck(funck2)
-print(s2)
-d2 = make_dict(s2)
-print(d2)
-
-result_d = {}
-
-print(result_d)
-# d1 = {6: 10, 5: 8, 2: 1}
-# d2 = {6: 1, 5: 2, 2: 8}
-# d3 = {}
-# for i in d1:
-#     d3[i] = d1[i]+d2[i]
-# print(d3)
+# funck1 = '94*x**6-26*x**4+55*x**2-81*x**0'
+# funck2 = '1*x**4-96*x**2+12*x**1'
+#
+# def transform_to_dict(funck):
+#     list_funck = []
+#     new_position = 0
+#     for i in range(len(funck)):
+#         if (funck[i] == "+" or funck[i] == "-") and i != len(funck) - 1:
+#             list_funck.append(funck[new_position:i].split('*x**'))
+#             new_position = i
+#         elif i == len(funck) - 1:
+#             list_funck.append(funck[new_position:i + 1].split('*x**'))
+#
+#     def list_into_dict(list_):
+#         dict_ = {}
+#         for x in list_:
+#             key = x[1]
+#             dict_[key] = int(x[0])
+#         return dict_
+#
+#     return list_into_dict(list_funck)
+#
+# dict1_ = transform_to_dict(funck1)
+# dict2_ = transform_to_dict(funck2)
+#
+# # print(dict1_, dict2_, sep='\n')
+#
+#
+# for key in dict1_:
+#     if key in dict2_.keys():
+#         dict1_[key] = int(dict1_[key]) + int(dict2_[key])
+# dict2_.update(dict1_)
+#
+# # print(dict2_)
+# result = ''
+#
+# for key, value in dict2_.items():
+#     if value > 0:
+#         result += '+' + str(value) + "*x**" + key
+#     result += str(value) + "*x**" + key
+#
+# print(result)
